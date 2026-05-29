@@ -208,6 +208,8 @@ This section signals senior thinking. Sketch now, write properly when shipping.
 - **No eval data means "confidence" is theater.** Mitigation: make the LLM's self-reported confidence visible but don't oversell it. The README's "what I'd build next" should lead with eval harness.
 - **B2B sales is not a domain I have deep ops experience in.** The samples need to feel real. Mitigation: read a few real sales call transcripts on the internet first (Gong has public examples), don't ship samples that read like a junior PM imagining sales.
 
+- **Cross-reference scores are lower than ideal.** Cosine similarity scores fell because objection summaries (specific) and playbook patterns (general) live at different abstraction levels. Production fix is an LLM re-ranker over top-N candidates — flagged in v2 work.
+
 ---
 
 ## Done = shippable
