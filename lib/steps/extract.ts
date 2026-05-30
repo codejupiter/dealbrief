@@ -139,6 +139,6 @@ export async function runExtract(
 
   return {
     output: result.object,
-    tokens: result.usage.totalTokens,
+    tokens: result.usage.totalTokens ?? 0,
   };
 }

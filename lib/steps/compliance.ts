@@ -144,6 +144,6 @@ Flag any statements that warrant a corrective follow-up or legal/security awaren
 
   return {
     output: result.object,
-    tokens: result.usage.totalTokens,
+    tokens: result.usage.totalTokens ?? 0,
   };
 }

@@ -153,6 +153,6 @@ Identify all objections raised by the prospect (and any named stakeholders menti
 
   return {
     output: result.object,
-    tokens: result.usage.totalTokens,
+    tokens: result.usage.totalTokens ?? 0,
   };
 }
