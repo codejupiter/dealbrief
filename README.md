@@ -2,7 +2,7 @@
 
 **Agentic deal intelligence for sales calls.** Paste a transcript, get a structured deal brief in under a minute: stakeholders mapped, objections classified and matched against a sales playbook, compliance landmines flagged, and a follow-up email drafted — streamed to the screen as the pipeline runs.
 
-🔗 **Live demo:** [dealbrief.zoriahcocio.com](https://dealbrief.zoriahcocio.com)
+🔗 **Live demo:** [dealbrief-codejupiters-projects.vercel.app](https://dealbrief-codejupiters-projects.vercel.app)
 🎥 **30-second walkthrough:** _(Loom embed — coming soon)_
 
 ![dealbrief screenshot](./docs/screenshot.png)
