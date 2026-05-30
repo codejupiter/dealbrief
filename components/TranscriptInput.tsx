@@ -2,11 +2,6 @@
  * components/TranscriptInput.tsx
  *
  * Left pane. Sample dropdown, transcript textarea, generate/reset actions.
- *
- * Updated layout: the container is height-constrained by its parent (sticky
- * section), and the textarea fills the available space with internal scroll.
- * This keeps the left column locked to viewport height regardless of
- * transcript length.
  */
 
 'use client';
@@ -39,7 +34,7 @@ export function TranscriptInput({
 
   return (
     <div
-      className="rounded-lg flex flex-col flex-1 min-h-0 overflow-hidden"
+      className="rounded-lg flex flex-col flex-1 min-h-0"
       style={{
         background: 'hsl(var(--surface))',
         border: '1px solid hsl(var(--border))',
@@ -47,7 +42,7 @@ export function TranscriptInput({
     >
       {/* Header */}
       <div
-        className="flex items-center justify-between px-5 py-3.5 border-b shrink-0"
+        className="flex items-center justify-between px-5 py-3.5 border-b"
         style={{ borderColor: 'hsl(var(--border))' }}
       >
         <div className="flex items-center gap-2.5">
@@ -122,21 +117,22 @@ export function TranscriptInput({
         </div>
       </div>
 
-      {/* Textarea — fills remaining space, scrolls internally */}
+      {/* Textarea */}
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={isRunning}
         placeholder="Paste a sales call transcript here, or load a sample from the dropdown above."
-        className="flex-1 w-full px-5 py-4 bg-transparent resize-none outline-none text-sm leading-relaxed font-mono disabled:opacity-60 min-h-0"
+        className="flex-1 w-full px-5 py-4 bg-transparent resize-none outline-none text-sm leading-relaxed font-mono disabled:opacity-60"
         style={{
           color: 'hsl(var(--foreground))',
+          minHeight: '560px',
         }}
       />
 
       {/* Footer / Actions */}
       <div
-        className="flex items-center justify-between px-5 py-3.5 border-t gap-3 shrink-0"
+        className="flex items-center justify-between px-5 py-3.5 border-t gap-3"
         style={{ borderColor: 'hsl(var(--border))' }}
       >
         <button
