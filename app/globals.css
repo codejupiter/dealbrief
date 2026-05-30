@@ -1,26 +1,159 @@
-@import "tailwindcss";
+/**
+ * app/globals.css
+ *
+ * Design tokens for dealbrief. Dark theme by default — fits the AI-native
+ * tooling aesthetic and visually aligns with the codejupiter GitHub profile.
+ *
+ * Color choices:
+ * - Background: slightly warm near-black (not pure #000) — easier on the eyes
+ *   and reads as considered rather than lazy.
+ * - Foreground: high-contrast off-white, never pure white (less eye strain).
+ * - Accent: a focused indigo for primary actions. Used sparingly.
+ * - Semantic colors for pipeline step states (idle, running, complete, error).
+ *
+ * All colors are HSL for easy alpha manipulation in Tailwind.
+ */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+ @import "tailwindcss";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+ @layer base {
+   :root {
+     --background: 222 18% 8%;
+     --foreground: 220 14% 92%;
+ 
+     --surface: 222 16% 11%;
+     --surface-elevated: 222 14% 14%;
+     --border: 222 12% 22%;
+     --border-strong: 222 12% 32%;
+ 
+     --muted: 222 10% 60%;
+     --muted-strong: 222 10% 75%;
+ 
+     --accent: 234 89% 70%;
+     --accent-strong: 234 89% 78%;
+     --accent-muted: 234 30% 30%;
+ 
+     --success: 142 70% 55%;
+     --success-muted: 142 30% 20%;
+     --warning: 38 92% 60%;
+     --warning-muted: 38 35% 22%;
+     --danger: 0 75% 65%;
+     --danger-muted: 0 35% 25%;
+ 
+     /* Pipeline step states */
+     --step-idle: 222 10% 40%;
+     --step-running: 234 89% 70%;
+     --step-complete: 142 70% 55%;
+     --step-error: 0 75% 65%;
+   }
+ 
+   html, body {
+     background: hsl(var(--background));
+     color: hsl(var(--foreground));
+     font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+     -webkit-font-smoothing: antialiased;
+     text-rendering: optimizeLegibility;
+   }
+ 
+   body {
+     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+       "Inter", "Segoe UI", sans-serif;
+   }
+ 
+   /* Scrollbar styling — keeps the dark aesthetic consistent */
+   ::-webkit-scrollbar {
+     width: 10px;
+     height: 10px;
+   }
+ 
+   ::-webkit-scrollbar-track {
+     background: hsl(var(--background));
+   }
+ 
+   ::-webkit-scrollbar-thumb {
+     background: hsl(var(--border));
+     border-radius: 5px;
+   }
+ 
+   ::-webkit-scrollbar-thumb:hover {
+     background: hsl(var(--border-strong));
+   }
+ 
+   /* Subtle text selection */
+   ::selection {
+     background: hsla(var(--accent), 0.3);
+     color: hsl(var(--foreground));
+   }
+ }
+ 
+ @layer utilities {
+   /* Soft glow utility for the running step indicator */
+   .glow-accent {
+     box-shadow: 0 0 0 1px hsla(var(--accent), 0.3),
+                 0 0 24px -4px hsla(var(--accent), 0.4);
+   }
+ 
+   .glow-success {
+     box-shadow: 0 0 0 1px hsla(var(--success), 0.3);
+   }
+ 
+   /* Subtle gradient border on focused cards */
+   .gradient-border {
+     background:
+       linear-gradient(hsl(var(--surface)), hsl(var(--surface))) padding-box,
+       linear-gradient(135deg, hsla(var(--accent), 0.5), hsla(var(--accent), 0.1)) border-box;
+     border: 1px solid transparent;
+   }
+ 
+   /* Markdown content styling — applies to the brief render */
+   .prose-brief h1 {
+     @apply text-2xl font-semibold mt-2 mb-4;
+     color: hsl(var(--foreground));
+   }
+ 
+   .prose-brief h2 {
+     @apply text-lg font-semibold mt-6 mb-3 pb-2;
+     color: hsl(var(--foreground));
+     border-bottom: 1px solid hsl(var(--border));
+   }
+ 
+   .prose-brief h3 {
+     @apply text-base font-semibold mt-4 mb-2;
+     color: hsl(var(--muted-strong));
+   }
+ 
+   .prose-brief p {
+     @apply mb-3 leading-relaxed;
+     color: hsl(var(--foreground));
+   }
+ 
+   .prose-brief ul, .prose-brief ol {
+     @apply mb-3 ml-5;
+   }
+ 
+   .prose-brief ul li {
+     @apply list-disc mb-1.5 leading-relaxed;
+   }
+ 
+   .prose-brief ol li {
+     @apply list-decimal mb-1.5 leading-relaxed;
+   }
+ 
+   .prose-brief strong {
+     color: hsl(var(--muted-strong));
+     font-weight: 600;
+   }
+ 
+   .prose-brief code {
+     background: hsl(var(--surface-elevated));
+     padding: 0.1em 0.35em;
+     border-radius: 3px;
+     font-size: 0.9em;
+   }
+ 
+   .prose-brief hr {
+     border: 0;
+     border-top: 1px solid hsl(var(--border));
+     margin: 1.5rem 0;
+   }
+ }
